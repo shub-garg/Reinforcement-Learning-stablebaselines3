@@ -1,7 +1,7 @@
 import os
 import gym
 import cv2
-from stable_baselines3 import PPO
+from stable_baselines3 import SAC
 from stable_baselines3.common.vec_env import DummyVecEnv
 from stable_baselines3.common.evaluation import evaluate_policy
 from stable_baselines3.common.callbacks import EvalCallback, StopTrainingOnRewardThreshold
@@ -27,7 +27,7 @@ eval_episodes = 10
 net_arch = [dict(pi=[128, 128, 128, 128], vf=[128, 128, 128, 128])]
 
 # Define callbacks
-stop_call = StopTrainingOnRewardThreshold(reward_threshold=500, verbose=1)
+stop_call = StopTrainingOnRewardThreshold(reward_threshold=2000, verbose=1)
 eval_call = EvalCallback(env, callback_on_new_best=stop_call, eval_freq=eval_freq,
                          best_model_save_path=save_path, verbose=1)
 
@@ -35,7 +35,7 @@ eval_call = EvalCallback(env, callback_on_new_best=stop_call, eval_freq=eval_fre
 env = DummyVecEnv([lambda: env])
 
 # Initialize PPO model
-model = PPO('MlpPolicy', env, verbose=1, tensorboard_log=log_path, policy_kwargs={'net_arch': net_arch})
+model = SAC('MlpPolicy', env, verbose=1, tensorboard_log=log_path)
 
 # Train the model
 model.learn(total_timesteps=total_timesteps, callback=eval_call)
@@ -45,7 +45,10 @@ model_path = os.path.join(save_path, "PPO_Model_Humanoid")
 model.save(model_path)
 
 # Load the trained model for evaluation
-model = PPO.load(model_path, env=env)
+model = SAC.load(model_path, env=env)
+#model.learn(total_timesteps=total_timesteps, callback=eval_call)
+#model.save(model_path)
+
 
 # Evaluate the trained model
 res = evaluate_policy(model, env, n_eval_episodes=eval_episodes, render=False)
