@@ -1,5 +1,8 @@
 # Reinforcement Learning stablebaselines3
  
+
+![portfolio-9](https://github.com/shub-garg/Reinforcement-Learning-stablebaselines3/assets/52582943/85a058e5-01f5-42c6-80e2-550938c8d7bf)
+
 | **Name**         | **Recurrent**      | `Box`          | `Discrete`     | `MultiDiscrete` | `MultiBinary`  | **Multi Processing**              |
 | ------------------- | ------------------ | ------------------ | ------------------ | ------------------- | ------------------ | --------------------------------- |
 | ARS   | :x: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: | :heavy_check_mark: |
@@ -16,7 +19,6 @@
 | TRPO  | :x: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark: | :heavy_check_mark: |
 | Maskable PPO  | :x: | :x: | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark: | :heavy_check_mark:  |
 
-![portfolio-9](https://github.com/shub-garg/Reinforcement-Learning-stablebaselines3/assets/52582943/85a058e5-01f5-42c6-80e2-550938c8d7bf)
 
 # Custom CNN Policy with ResNet-like Structure for CarRacing-v2
 
